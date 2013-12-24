@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * ========================================================= */
- 
+
 (function( $ ) {
 
 	var ErrorMsgs = {
@@ -275,7 +275,6 @@
 			}
 
 			this.percentage[this.dragged] = this.reversed ? 100 - percentage : percentage;
-			this.layout();
 
 			if (this.touchCapable) {
 				// Touch: Bind touch events:
@@ -292,7 +291,6 @@
 
 			this.inDrag = true;
 			var val = this.calculateValue();
-			this.setValue(val);
 			this.element.trigger({
 					type: 'slideStart',
 					value: val
@@ -323,9 +321,7 @@
 				}
 			}
 			this.percentage[this.dragged] = this.reversed ? 100 - percentage : percentage;
-			this.layout();
 			var val = this.calculateValue();
-			this.setValue(val);
 			this.element
 				.trigger({
 					type: 'slide',
@@ -358,7 +354,6 @@
 				this.hideTooltip();
 			}
 			var val = this.calculateValue();
-			this.layout();
 			this.element
 				.data('value', val)
 				.prop('value', val)
@@ -388,6 +383,7 @@
 				val = parseFloat(val);
 				this.value = [val, this.value[1]];
 			}
+			this.layout();
 			return val;
 		},
 
