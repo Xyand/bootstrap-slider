@@ -483,9 +483,9 @@
 	$.fn.slider = function (option) {
 		if (typeof option === 'string') {
 			var args = Array.prototype.slice.call(arguments, 1);
-			return invokePublicMethod.call(this, option, args);
+			return this.map( function() { return invokePublicMethod.call(this, option, args); })
 		} else {
-			return createNewSliderInstance.call(this, option);
+			return this.each( function() { createNewSliderInstance.call(this, option); });
 		}
 	};
 
